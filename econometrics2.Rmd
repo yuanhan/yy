@@ -1,0 +1,128 @@
+中级计量第二次作业
+========================================================
+### 一
+* 1a,在模型(1)中存在多重共线性。模型(1)的F值为189.8，大于自由度为3和20的F分布在1%显著性下的临界值，说明模型总体是显著的。然而，logK的t值却为0.53/0.34=1.56,小于自由度为20的t分布在5%显著性水平下的临界值2.086.因此logK不显著。总上所述，存在**多重共线性**。
+* 1b,$latex \hat{\beta_{logK}}$表示K对Y的弹性，应当为正。模型(1)的估计结果为负，这是**多重共线性**的后果。
+* 1c,将柯布-道格拉斯生产函数$latex Y=A(t)K^{\alpha}L^{\beta}\mu$的等式两边取对数，即可得到模型(1)中的函数形式。
+* 1d,资本投入增加1%，会导致产出投入减少0.53%，劳动投入增加1%会导致产出增加0.91%。全要素生产率每年增长0.047.该模型解释了产出97%的变异。时间趋势变量的作用是表明技术（全要素生产率）随时间的变化程度。
+* 1e,模型(2)考虑的是人均层面上的变量之间的关系。对$latex  \frac{Y}{L}=A(t)\frac{K}{L}^{\beta}\mu$两边取对数即为模型(2)的形式。这里的时间趋势变量是表明人均产出随时间变化的程度。
+* 1f,没有解决。$log(\frac{K}{L})$的t检验结果是不显著的。
+* 1g,模型(2)可以转化为$logY=\beta_{0}+\beta_{1}logK+(1-\beta_{1})logL+\beta_{2}t$，因此这个线性约束即为劳动和资本对产出的弹性之和为1（$\beta_{logK}+\beta_{logL}=1$），也就是该生产函数的规模报酬不变。可以运用F检验来判断该约束是否合理。F值得计算公式如下\[
+F=\frac{(RSS_{R}-RSS_{U})/(k_{U}-k_{R})}{RSS_{U}/(n-k_{U}-1)}
+\]
+* 1h,不可比。两个模型变量个数不同。增加变量总是会提高$R^{2}$。
+
+### 二  
+* 2a,作者假定，随机项的方差是GNP的函数。这是由于收入增加会增加人们的备用收入，扩大人们选择的范围。
+* 2b,有所改进。在$\beta_{1}t$的方差只增加很小的代价下，使得$\beta_{0}t$和$\beta_{2}t$的方差有了大幅度的下降。
+* 2c,可比。两个模型的变量个数相同。
+
+### 三  
+* 3a,两者之间的差别很小。
+* 3b,将会使抽烟的概率降低0.116.
+* 3c,让$0.020age-0.00026age^{2}$对$age$求导$$\frac{d(0.020age-0.00026age^{2})}{dage}=0.020-0.00052age$$要使导数小于零，则\[
+age>38.46154
+\]取整，即年龄达到或超过39岁以后，再增加一岁将减少抽烟的概率。
+* 3d,如果该州的餐馆实施禁烟措施,则平均说来该州的吸烟率会降低0.101.
+* 3e,该人抽烟的概率为0.0052，是小概率事件。数据表明，这个人不抽烟，小概率事件没有发生，模型预测结果可信。
+```{r}
+0.656-0.069*log(67.44)+0.012*log(6500)-16*0.029+0.02*77-0.00026*77*77
+```
+
+### 四
+50个观测值，4个解释变量的5%显著性水平下D.W.统计值的上下界分别为$$d_{L}=1.42,d_{U}=1.67$$ 
+* 4a,该值位于$\left[0,d_{L}\right]$区间内，因此存在正自相关。
+* 4b,该值位于$\left[0,d_{L}\right]$区间内，因此存在正自相关。
+* 4c,该值位于$\left[4-d_{U},4-d_{L}\right]$区间内，因此不能确定是否存在自相关。
+* 4d,该值位于$\left[4-d_{L},4\right]$区间内，因此存在正自相关。
+
+### 五
+* 5a,16个观测值，1个解释变量的5%显著性水平下D.W.统计值的上下界分别为$$d_{L}=1.10,d_{U}=1.37$$.Model A的D.W.统计值位于$\left[0,d_{L}\right]$区间内，因此存在正自相关。
+16个观测值，2个解释变量的5%显著性水平下D.W.统计值的上下界分别为$$d_{L}=0.98,d_{U}=1.54$$.Model B的D.W.统计值位于$\left[d_{U},4-d_{U}\right]$区间内，因此不存在自相关。
+* 5b,由于模型B不存在自相关性，因此，模型A中的自相关性显然来自模型设定偏误。
+* 5c,模型设定偏误可以通过改变模型的结构来消除，而真正的自相关性则不可以通过改变模型结构来消除。
+
+### 六
+* 6a,错误，在完全共线性的情况下，将根本无法进行估计。
+* 6b,对。在高度共线性的情况下，OLS的估计量的方差非常大，置信区间很容易将0包含其中，容易接受参数为0的原假设。
+* 6c,对。辅助回归的$R^{2}$很高表明原模型的某个解释变量的变异可以由其他解释变量解释，则存在高度共线性。
+* 6d,错。异方差只会影响估计量的方差，而不会改变估计量的均值，OLS估计量仍然是无偏的。
+* 6e,对。t检验和F检验中的统计值计算依赖方差，需要同方差的假定才能使用。
+* 6f,错误。既有可能高估，也有可能低估。
+* 6g,错误。残差的系统性样式也有可能是由于序列相关导致的。
+* 6h,对。“残差”中包含了该变量。
+* 6i,错误。自相关同样只影响方差，OLS仍具有无偏性。
+* 6j,错误。假设随机干扰项为一阶自相关。
+* 6k,错误。可以直接比较，因为两个模型的变量个数相同。
+* 6l,对。自相关情况下的OLS方差有偏误。
+
+### 七
+|||||||
+-------|-------|-------|-------|-------|-------|
+a=2.074|b=7|c=39.991|d=1183|e=0.03381|f=0.03535|
+g=1191|h=7|i=1183|j=8.76072|k=0.04926|l=0.04356|
+m=0.18387|n=0.00103|o=0.031999|p=0.01102|q=2.8044|r=?|
+
+### 八
+OLS估计量为$$\hat{\beta}=(X^{'}X)^{-1}X^{'}y$$
+方差为$$Var(\hat{\beta}\mid X)=Var\left[(X^{'}X)^{-1}X^{'}u\mid X\right]=\sigma^{2}(X^{'}X)^{-1}X^{'}\Omega(X^{'}X)^{-1}X^{'}$$
+
+### 九
+
+b,c是异方差的后果。异方差只影响方差的估计值，模型的估计值仍然是无偏的且一致的，不过不再是有效的。
+
+### 十
+
+$$\frac{beer}{income}=\frac{\beta_{0}}{income}+\beta_{1}+\frac{\beta_{2}price}{income}+\frac{\beta_{3}educ}{income}+\frac{\beta_{4}female}{income}+\frac{\varepsilon}{income}$$
+
+### 十一
+
+* 11a,结果如下
+```{r}
+ele=read.table("D:/My Documents/R/NERLOV",header=TRUE)
+attach(ele);LNCP3=log(COSTS/PF);LNP13=log(PL/PF);LNP23=log(PK/PF);LNKWH=log(KWH);
+summary(LNCP3)#包含最大值，最小值和均值
+sd(LNCP3)#方差
+summary(LNP13)
+sd(LNP13)
+summary(LNP23)
+sd(LNP23)
+summary(LNKWH)
+sd(LNKWH)
+```
+* 11b,This estimate is in TABLE3(Regression No.1). The other coefficients are different. 
+```{r}
+model=lm(formula = LNCP3 ~ LNKWH + LNP13 + LNP23);
+summary(model)
+```
+* 11c,The null hypothes that $\beta_{2}=1$ is ejected. $\beta_{2}=1$ actually means that returns to scale are constant. Hence, we should also reject the null hypothes that returns to scale are constant.
+```{r}
+confint(model,'LNP13',level=0.95)
+```
+* 11d,The pattern is indeed U-shaped, which suggests that there is heteroskedasticity in the model.
+The correlation of residuals with LNKWH is nearly 0. Correlation measures linear relation between two variables. The U-shaped pattern is abviously not linear.
+```{r}
+plot(LNKWH,model$resid)
+cor(LNKWH,model$resid)
+```
+* 11e,These results are a little different from Nerlove’s results.
+```{r}
+model1=lm(LNCP3~LNKWH+LNP13+LNP23,data=ele,subset=c(ele$ORDER<200))
+model1
+model2=lm(LNCP3~LNKWH+LNP13+LNP23,data=ele,subset=c(ele$ORDER>200&ele$ORDER<300))
+model2
+model3=lm(LNCP3~LNKWH+LNP13+LNP23,data=ele,subset=c(ele$ORDER>300&ele$ORDER<400))
+model3
+model4=lm(LNCP3~LNKWH+LNP13+LNP23,data=ele,subset=c(ele$ORDER>400&ele$ORDER<500))
+model4
+model5=lm(LNCP3~LNKWH+LNP13+LNP23,data=ele,subset=c(ele$ORDER>500&ele$ORDER<600))
+model5
+```
+* 11f,The estimated scale economies diminish, from a high of well over 2 to a low of slightly below 1,as the level of output increases.
+```{r}
+1/model1$coefficients[2]
+1/model2$coefficients[2]
+1/model3$coefficients[2]
+1/model4$coefficients[2]
+1/model5$coefficients[2]
+```
